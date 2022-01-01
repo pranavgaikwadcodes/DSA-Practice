@@ -20,5 +20,5 @@ int main() {
     int twoCompOfBits = (~ans) | 1;
     int finalans = (~twoCompOfBits) | 1;
     cout<<twoCompOfBits;
-
+    
 }
