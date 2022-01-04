@@ -11,10 +11,10 @@ int BinarySearch(int arr[],int size,int key){
     while(start <= end){
 
         if(arr[mid]==key){ // key found condition
+            
             return mid;
-        }
 
-        if(key > arr[mid]){ //going right
+        } else if(key > arr[mid]){ //going right
            
             start = mid + 1;
 
@@ -39,7 +39,7 @@ int main(){
     int evenArr = BinarySearch(even,6,10);
     cout<<"Index of 10 : "<<evenArr<<endl;
 
-    int oddArr = BinarySearch(odd,5,10);
+    int oddArr = BinarySearch(odd,5,2);
     cout<<"Index of 10 : "<<oddArr<<endl;
 
     return 0;
