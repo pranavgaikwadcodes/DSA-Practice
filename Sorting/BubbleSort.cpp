@@ -11,6 +11,7 @@ int main(){
         cin>>arr[i];
     }
 
+    int count = 0;
     for(int i = 1; i < n; i++){
 
         bool swaped = false; // to save time and make this more optimized 
@@ -18,6 +19,7 @@ int main(){
         for(int j = 0; j < n - i; j++){
             if(arr[j] > arr[j+1]){
                 swap(arr[j],arr[j+1]);
+                count++;
                 swaped = true;
             }
         }
@@ -29,10 +31,12 @@ int main(){
 
     // descending order
     // for(int i = 1; i < n; i++){
-
+    //     bool swaped = false;
     //     for(int j = 0; j < n - i; j++){
     //         if(arr[j] < arr[j+1]){
     //             swap(arr[j],arr[j+1]);
+    //             count++;
+    //             swaped = true;
     //         }
     //     }
 
@@ -43,6 +47,7 @@ int main(){
     for(int i = 0; i < n; i++){
         cout<<arr[i]<< " ";
     }
+    cout<< endl << "num of sort required : " << count << endl;
 
     return 0;
 }
