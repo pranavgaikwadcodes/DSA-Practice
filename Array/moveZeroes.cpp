@@ -7,6 +7,7 @@ using namespace std;
 
 void MoveZeroes(int arr[] , int n){
 
+// we will shift all non zero val to left
     int nonZeroIndex = 0;
 
     for( int i = 0; i < n; i++ ) {
