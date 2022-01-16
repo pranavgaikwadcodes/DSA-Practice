@@ -5,9 +5,9 @@ https://bit.ly/3peOT9i
 https://leetcode.com/problems/count-primes/
 
 # Topics to understand and learn : 
-pigeonhole principle,
-catalan number,
-inclusion exclusion principle.
+- pigeonhole principle,
+- catalan number,
+- inclusion exclusion principle.
 
 
 ## try solving problem -> factorial of 212
