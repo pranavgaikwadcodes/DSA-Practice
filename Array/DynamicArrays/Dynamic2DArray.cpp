@@ -34,5 +34,15 @@ int main() {
         cout << endl;
     }
 
+
+    // when we create Dynamic Array we should always release the memory after using it (it is not released automatically , we have to do it manualy)
+
+    //releasing memory
+    for(int i = 0; i < rows; i++){
+        delete [] arr[i];
+    }
+
+    delete [] arr;
+
     return 0;
 }
