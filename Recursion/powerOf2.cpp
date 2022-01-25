@@ -13,6 +13,7 @@ int powerOf2(int n){
 int main() {
     
     int n;
+    cout << "2 to the power -> ";
     cin >> n;
 
     int ans = powerOf2(n);
