@@ -30,6 +30,11 @@ void reverse(string& str, int i){
     }
 
     // process
+    /*
+        str[(length - 1) - i] , eg: length of string is 3, therefore,
+        str[ 3-1 - 0] , => str[2], i.e index 2 
+        use this formula when using 1 pointer approach    
+    */
     swap( str[i] , str[str.length() - i - 1] );
     i++;
 
