@@ -8,9 +8,11 @@ void mergeArr(int *arr, int start , int end){
     int len1 = mid - start + 1;
     int len2 = end - mid;
 
+    // dynamic memory allocation
     int *first = new int[len1];
     int *second = new int[len2];
 
+    //copy values
     int mainArrayIndex = start;
     for(int i = 0; i < len1; i++){
         first[i] = arr[mainArrayIndex++];
@@ -21,7 +23,7 @@ void mergeArr(int *arr, int start , int end){
         second[i] = arr[mainArrayIndex++];
     }
 
-
+    //merge 2 sorted arrays     
     int index1 = 0;
     int index2 = 0;
     mainArrayIndex = start;
@@ -42,6 +44,7 @@ void mergeArr(int *arr, int start , int end){
         arr[mainArrayIndex++] = second[index2++];
     }
 
+    //relezing memory
     delete []first;
     delete []second;
 }
@@ -56,10 +59,13 @@ void mergeSort(int *arr, int start, int end){
 
     int mid = start + (( end - start )/2);
 
+    //sort left
     mergeSort(arr, start, mid);
 
+    //sort right
     mergeSort(arr, mid + 1, end);
 
+    //merge arrays
     mergeArr(arr, start, end);
     
 }
