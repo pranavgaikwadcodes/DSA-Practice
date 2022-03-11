@@ -113,6 +113,40 @@ void deleteNodeByPosition( Node* &head , Node* &tail , int position ) {
 
 }
 
+void deleteNodeByData( Node* &head , Node* &tail , int dataToDelete ) {
+
+    Node* current = head;
+    Node* previous = NULL;
+
+    while( current != NULL ){
+
+        if(current -> data == dataToDelete) break;
+
+        previous = current;
+        current = current -> next;
+    }
+
+    if( previous == NULL ){
+        Node* temp = head;
+        head = head -> next;
+        
+        // memory free
+        temp -> next = NULL;
+        delete temp;
+    }
+    else{
+        // update tail if deleting last node
+        if( current -> next == NULL ) tail = previous;
+
+        previous -> next = current -> next;
+
+        // memory free
+        current -> next = NULL;
+        delete current;
+    }
+
+}
+
 
 void print(Node* &head){
     Node* temp = head;
@@ -149,7 +183,7 @@ int main() {
 
     print(head);
 
-    deleteNodeByPosition(head,tail,6);
+    deleteNodeByData(head,tail,100);
 
     print(head);
 
