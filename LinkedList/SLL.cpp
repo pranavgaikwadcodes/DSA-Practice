@@ -30,21 +30,33 @@ class Node {
 
 // Insertion of Nodes in Singly Linked List
 
-void insertAtHead( Node* &head , int data ) {
-
-    // create new node
-    Node* temp = new Node(data);
-    temp -> next = head;
-    head = temp;
+void insertAtHead( Node* &head , Node* &tail , int data ) {
+    if( head == NULL ) {
+        Node* temp = new Node(data);
+        head = temp;
+        tail = temp;
+    }
+    else{
+        // create new node
+        Node* temp = new Node(data);
+        temp -> next = head;
+        head = temp;
+    }
 
 }
 
-void insertAtTail( Node* &tail , int data ) {
-
-    // create new node
-    Node* temp = new Node(data);
-    tail -> next = temp;
-    tail = temp;
+void insertAtTail( Node* &head , Node* &tail , int data ) {
+    if( tail == NULL ) {
+        Node* temp = new Node(data);
+        head = temp;
+        tail = temp;
+    }
+    else{
+        // create new node
+        Node* temp = new Node(data);
+        tail -> next = temp;
+        tail = temp;
+    }
 
 }
 
@@ -52,7 +64,7 @@ void insertAtPosition( Node* &head , Node* &tail , int position , int data ){
 
     // Case 1 -> inserting at start position
     if( position == 1 ) {
-        insertAtHead(head,data);
+        insertAtHead( head , tail , data );
         return;
     }
 
@@ -66,7 +78,7 @@ void insertAtPosition( Node* &head , Node* &tail , int position , int data ){
 
     // Case 2 -> inserting at last position
     if( temp -> next == NULL ) {
-        insertAtTail(tail,data);
+        insertAtTail( head , tail , data );
         return;
     }
 
@@ -169,21 +181,21 @@ int main() {
     Node* head = node1;
     Node* tail = node1;
 
-    insertAtHead(head,1);
+    insertAtHead( head , tail , 1 );
 
-    insertAtTail(tail,20);
+    insertAtTail( head , tail , 20 );
 
-    insertAtPosition(head,tail,3,15);
+    insertAtPosition( head , tail , 3 , 15 );
 
     // try to insert at start
-    insertAtPosition(head,tail,1,0);
+    insertAtPosition( head , tail , 1 , 0 );
 
     // try to insert at last
-    insertAtPosition(head,tail,6,100);
+    insertAtPosition( head , tail , 6 , 100 );
 
     print(head);
 
-    deleteNodeByData(head,tail,100);
+    deleteNodeByData( head , tail , 100 );
 
     print(head);
 
