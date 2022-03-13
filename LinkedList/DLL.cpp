@@ -13,6 +13,19 @@ class Node{
         this -> previous = NULL;
         this -> next = NULL;
     }
+
+    // destructor
+    ~Node() {
+        int value = this -> data;
+
+        // memory free
+        if( this -> next != NULL ){
+            delete next;
+            this -> next = NULL;
+        }
+
+        cout << "Memory is free for node with data : " << value << endl;
+    }
 };
 
 void insertAtHead( Node* &head , Node* &tail , int data ) {
@@ -80,6 +93,45 @@ void insertAtPosition( Node* &head , Node* &tail , int position , int data ){
 }
 
 
+// Deletion of nodes in Singly Linked List
+
+void deleteNodeByPosition( Node* &head , Node* &tail , int position ) {
+
+    if( position == 1 ){ // deleting starting node
+        Node* temp = head;
+
+        temp -> next -> previous = NULL;
+        head = temp -> next;
+        
+        // memory free
+        temp -> next = NULL;
+        delete temp;
+    }
+    else { // deleting any middle or last node
+        Node* current = head;
+        Node* previous = NULL;
+
+        int count = 1;
+
+        while( count < position ) {
+            previous = current;
+            current = current -> next;
+            count++;
+        }
+
+        // update tail if deleting last node
+        if( current -> next == NULL ) tail = previous;
+
+        current -> previous = NULL;
+        previous -> next = current -> next;
+
+        // memory free
+        current -> next = NULL;
+        delete current;
+    }
+
+}
+
 // traversing
 void print( Node* &head ){
     Node* temp = head;
@@ -125,10 +177,21 @@ int main(){
     insertAtPosition( head , tail , 7 , 102 );
 
     print(head);
+    cout << "Head position at data : " << head -> data << endl;
+    cout << "Tail position at data : " << tail -> data << endl;
+    cout << "Length of LinkedList : " << getLength(head) << endl;
+
+
+    //deletion
+    cout << endl;
+    deleteNodeByPosition(head,tail,7);
+    deleteNodeByPosition(head,tail,1);
+    deleteNodeByPosition(head,tail,4);
+
+    print(head);
 
     cout << "Head position at data : " << head -> data << endl;
     cout << "Tail position at data : " << tail -> data << endl;
-
     cout << "Length of LinkedList : " << getLength(head) << endl;
 
     return 0;
