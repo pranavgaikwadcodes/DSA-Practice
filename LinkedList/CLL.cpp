@@ -45,8 +45,42 @@ void insertNode( Node* &tail , int position , int data ) {
 
 }
 
+void deleteNode( Node* &tail , int data ) {
+
+    // if list is empty
+    if( tail == NULL ){
+        cout << " This List Is Empty, Please Check Again. " << endl;
+        return;
+    }
+    else {
+        Node* previous = tail;
+        Node* current = previous -> next;
+
+        while( current -> data != data ){
+            previous = current;
+            current = current -> next;
+        }
+
+        previous -> next =  current -> next;
+
+        // only one node in Linked List
+        if( current == previous )   tail = NULL;
+
+        // Linked List >= 2 Nodes
+        if( tail == current )   tail = previous;
+
+        current -> next = NULL;
+        delete current;
+
+    }
+}
+
 void print( Node* tail ){
     Node* temp = tail;
+
+    if(tail == NULL){
+        cout << " LIST IS EMPTY! " << endl;
+    }
 
     do {
         cout << tail -> data << " ";
@@ -66,6 +100,9 @@ int main() {
     insertNode(tail,3,4);
     insertNode(tail,5,6);
 
+    print(tail);
+
+    deleteNode(tail,3);
     print(tail);
 
 
