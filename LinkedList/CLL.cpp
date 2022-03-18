@@ -123,9 +123,9 @@ int main() {
     print(tail);
 
     if( isCircular(tail) ) {
-        cout << " Circular " << endl;
+        cout << "This Linked List is Circular. " << endl;
     }else{
-        cout << " Not-Circular " << endl;
+        cout << "This Linked List is Not-Circular. " << endl;
     }
 
     return 0;
