@@ -152,6 +152,12 @@ bool isCircular(Node* head){
 
 // traversing
 void print( Node* &head ){
+
+    if( head == NULL ) {
+        cout << " List is Empty! " << endl;
+        return;
+    }
+
     Node* temp = head;
 
     cout << endl << "NULL";
@@ -212,11 +218,11 @@ int main(){
     cout << "Tail position at data : " << tail -> data << endl;
     cout << "Length of LinkedList : " << getLength(head) << endl;
 
-    if( isCircular(tail) ) {
+    if( isCircular(head) ) {
         cout << "This Linked List is Circular. " << endl;
     }else{
         cout << "This Linked List is Not-Circular. " << endl;
     }
-    
+
     return 0;
 }

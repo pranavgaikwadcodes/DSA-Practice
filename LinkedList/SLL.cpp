@@ -159,8 +159,30 @@ void deleteNodeByData( Node* &head , Node* &tail , int dataToDelete ) {
 
 }
 
+bool isCircular(Node* head){
+
+    if( head == NULL || head -> next == NULL ) return false;
+    
+    if( head -> next == head ) return true;
+    
+    Node* temp = head -> next;
+    
+    while( temp != NULL && temp != head ){
+        temp = temp -> next;
+    }
+    
+    if( temp == head ) return true;
+
+    return false;
+}
 
 void print(Node* &head){
+
+    if( head == NULL ) {
+        cout << " List is Empty! " << endl;
+        return;
+    }
+    
     Node* temp = head;
     cout << endl;
     while(temp != NULL){
@@ -202,6 +224,12 @@ int main() {
     // verify head and tail
     cout << "Head -> " << head -> data << endl;
     cout << "Tail -> " << tail -> data << endl << endl;
+
+    if( isCircular(head) ) {
+        cout << "This Linked List is Circular. " << endl;
+    }else{
+        cout << "This Linked List is Not-Circular. " << endl;
+    }
 
     return 0;
 }
