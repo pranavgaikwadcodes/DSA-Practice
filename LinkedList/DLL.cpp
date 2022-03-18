@@ -132,6 +132,24 @@ void deleteNodeByPosition( Node* &head , Node* &tail , int position ) {
 
 }
 
+
+bool isCircular(Node* head){
+
+    if( head == NULL || head -> next == NULL ) return false;
+    
+    if( head -> next == head ) return true;
+    
+    Node* temp = head -> next;
+    
+    while( temp != NULL && temp != head ){
+        temp = temp -> next;
+    }
+    
+    if( temp == head ) return true;
+
+    return false;
+}
+
 // traversing
 void print( Node* &head ){
     Node* temp = head;
@@ -194,5 +212,11 @@ int main(){
     cout << "Tail position at data : " << tail -> data << endl;
     cout << "Length of LinkedList : " << getLength(head) << endl;
 
+    if( isCircular(tail) ) {
+        cout << "This Linked List is Circular. " << endl;
+    }else{
+        cout << "This Linked List is Not-Circular. " << endl;
+    }
+    
     return 0;
 }
