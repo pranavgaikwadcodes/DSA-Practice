@@ -125,11 +125,41 @@ Node* floydDetectLoop(Node* head){
         slow = slow -> next;
 
         if( slow == fast ){
-            cout << " Present at element " << fast -> data << endl;
+            cout << "Loop Present at element " << fast -> data << endl;
             return slow;
         }
     }
     return NULL;
+}
+
+Node* getStartingNodeInLoop(Node* head){
+    if( head == NULL ) return NULL;
+
+    Node* intersection = floydDetectLoop(head);
+
+    Node* slow = head;
+    Node* fast = intersection;
+
+    while( slow != fast ){
+        slow = slow -> next;
+        fast = fast -> next;
+    }
+    
+    return slow;
+}
+
+void removeLoop( Node* head ){
+
+    if( head == NULL ) return;
+
+    Node* startingNode = getStartingNodeInLoop(head);
+    Node* temp = startingNode;
+
+    while( temp -> next != startingNode ){
+        temp = temp -> next;
+    }
+
+    temp -> next = NULL;
 }
 
 void print( Node* tail ){
@@ -173,6 +203,14 @@ int main() {
     }else{
         cout << "No Loop Present" << endl;
     }
+
+
+    if( getStartingNodeInLoop(tail) != NULL ){
+        Node* startingNode = getStartingNodeInLoop(tail);
+        cout << " Loop Starting Node =  " << startingNode -> data << endl;
+    }
+    
+    removeLoop(tail);
 
     return 0;
 }
