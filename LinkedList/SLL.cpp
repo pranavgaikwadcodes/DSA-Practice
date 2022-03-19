@@ -209,11 +209,41 @@ Node* floydDetectLoop(Node* head){
         slow = slow -> next;
 
         if( slow == fast ){
-            cout << " Present at element " << fast -> data << endl;
+            cout << " Loop Present at element " << fast -> data << endl;
             return slow;
         }
     }
     return NULL;
+}
+
+Node* getStartingNodeInLoop(Node* head){
+    if( head == NULL ) return NULL;
+
+    Node* intersection = floydDetectLoop(head);
+
+    Node* slow = head;
+    Node* fast = intersection;
+
+    while( slow != fast ){
+        slow = slow -> next;
+        fast = fast -> next;
+    }
+    
+    return slow;
+}
+
+void removeLoop( Node* head ){
+
+    if( head == NULL ) return;
+
+    Node* startingNode = getStartingNodeInLoop(head);
+    Node* temp = startingNode;
+
+    while( temp -> next != startingNode ){
+        temp = temp -> next;
+    }
+
+    temp -> next = NULL;
 }
 
 void print(Node* &head){
@@ -236,46 +266,41 @@ int main() {
 
     // create new node (In Heap)
     Node* node1 = new Node(10);
-    // cout<< node1 -> data << endl;
-    // cout<< node1 -> next << endl;
 
     // head and tail pointed to node1
     Node* head = node1;
     Node* tail = node1;
 
     insertAtHead( head , tail , 1 );
-
     insertAtTail( head , tail , 20 );
-
     insertAtPosition( head , tail , 3 , 15 );
-
     // try to insert at start
     insertAtPosition( head , tail , 1 , 0 );
-
     // try to insert at last
     insertAtPosition( head , tail , 6 , 100 );
 
     print(head);
 
     deleteNodeByData( head , tail , 100 );
-
     print(head);
+    
+    tail -> next = head -> next;
 
     // verify head and tail
     cout << "Head -> " << head -> data << endl;
     cout << "Tail -> " << tail -> data << endl << endl;
 
-    if( isCircular(head) ) {
-        cout << "This Linked List is Circular. " << endl;
+    if( floydDetectLoop(head) != NULL ){
+        cout << " Has Loop" << endl;
     }else{
-        cout << "This Linked List is Not-Circular. " << endl;
+        cout << " No Loop Present" << endl;
     }
 
-    if( floydDetectLoop(head) != NULL ){
-        cout << "Has Loop" << endl;
-    }else{
-        cout << "No Loop Present" << endl;
-    }
+    Node* loop = getStartingNodeInLoop(head);
+    cout << " Loop Starting Node =  " << loop -> data << endl;
+    
+    removeLoop(head);
+    print(head);
 
     return 0;
 }
