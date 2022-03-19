@@ -220,7 +220,7 @@ Node* getStartingNodeInLoop(Node* head){
     if( head == NULL ) return NULL;
 
     Node* intersection = floydDetectLoop(head);
-
+    if( intersection == NULL ) return NULL;
     Node* slow = head;
     Node* fast = intersection;
 
