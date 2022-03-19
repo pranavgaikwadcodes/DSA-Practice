@@ -111,6 +111,27 @@ bool detectLoop(Node* head){
     return false;
 }
 
+// Approach 2 Floyd Cycle Detection
+Node* floydDetectLoop(Node* head){
+    if( head == NULL ) return NULL;
+
+    Node* slow = head;
+    Node* fast = head;
+
+    while( fast != NULL && slow != NULL ) {
+        fast = fast -> next;
+        if( fast != NULL ) fast = fast -> next;
+
+        slow = slow -> next;
+
+        if( slow == fast ){
+            cout << " Present at element " << fast -> data << endl;
+            return slow;
+        }
+    }
+    return NULL;
+}
+
 void print( Node* tail ){
     Node* temp = tail;
 
@@ -147,7 +168,7 @@ int main() {
         cout << "This Linked List is Not-Circular. " << endl;
     }
 
-    if( detectLoop(tail) ){
+    if( floydDetectLoop(tail) != NULL ){
         cout << "Has Loop" << endl;
     }else{
         cout << "No Loop Present" << endl;
