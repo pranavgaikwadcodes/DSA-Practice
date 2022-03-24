@@ -1,3 +1,8 @@
+/*
+https://practice.geeksforgeeks.org/problems/given-a-linked-list-of-0s-1s-and-2s-sort-it/1/?page=2&category[]=Linked%20List&sortBy=submissions#
+
+https://www.codingninjas.com/codestudio/problems/sort-linked-list-of-0s-1s-2s_1071937?leftPanelTab=1
+*/
 #include <bits/stdc++.h>
 
 using namespace std;
